@@ -1,3 +1,5 @@
+const {v4: uuidv4} = require("uuid")
+
 function getProcess(executeQuery, processdata, callback) {
     let query = "SELECT * FROM process WHERE ";
     let params;
@@ -24,8 +26,8 @@ function getProcess(executeQuery, processdata, callback) {
 }
 
 const addProcess = (executeQuery, processdata, callback) => {
-    const query = "INSERT INTO process (user) VALUES (?)";
-    const params = [processdata.user];
+    const query = "INSERT INTO process (id, user) VALUES (?, ?)";
+    const params = [uuidv4(), processdata.user];
 
     executeQuery(query, params, callback);
 };

@@ -1,7 +1,9 @@
 const connect = require("./connection");
 const user = require("./user");
-const process = require("./process")
+const process = require("./process");
 const org = require("./org");
+const file = require("./file");
+
 let connection = connect();
 
 function executeQuery(query, params, callback) {
@@ -30,3 +32,30 @@ const getProcess = (processdata, callback) => process.getProcess(executeQuery, p
 const addProcess = (processdata, callback) => process.addProcess(executeQuery, processdata, callback);
 const setProcess = (processdata, callback) => process.setProcess(executeQuery, processdata, callback);
 const deleteProcess = (processdata, callback) => process.deleteProcess(executeQuery, processdata, callback);
+
+const addFile = (filedata, callback) => file.addFile(connection, filedata, callback);
+const getFile = (filedata, callback) => file.getFile(executeQuery, filedata, callback);
+const deleteFile = (filedata, callback) => file.deleteFile(executeQuery, filedata, callback);
+
+module.exports = {
+    getUser,
+    addUser,
+    getAllUsers,
+    setUser,
+    deleteUser,
+    getBank,
+    addBank,
+    getAllBanks,
+    setBank,
+    deleteBank,
+    getOrg,
+    setOrg,
+    getProcess,
+    addProcess,
+    setProcess,
+    deleteProcess,
+    addFile,
+    getFile,
+    deleteFile
+
+};

@@ -13,8 +13,8 @@ function getUser(executeQuery, userdata, callback) {
 }
 
 const addUser = (executeQuery, userdata, callback) => {
-    const query = "INSERT INTO user (name, username, password) VALUES (?, ?, ?)";
-    const params = [userdata.name, userdata.username, userdata.password];
+    const query = "INSERT INTO user (id, name, username, password) VALUES (?, ?, ?, ?)";
+    const params = [uuidv4(), userdata.name, userdata.username, userdata.password];
 
     executeQuery(query, params, callback);
 };

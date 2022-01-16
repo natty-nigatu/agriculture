@@ -1,3 +1,5 @@
+const {v4: uuidv4} = require("uuid")
+
 function getBank(executeQuery, bankdata, callback) {
     let query = "SELECT * FROM bank WHERE ";
     let params;
@@ -14,7 +16,7 @@ function getBank(executeQuery, bankdata, callback) {
 
 const addBank = (executeQuery, bankdata, callback) => {
     const query = "INSERT INTO bank (id, username, password) VALUES (?, ?, ?)";
-    const params = [bankdata.name, bankdata.username, bankdata.password];
+    const params = [uuidv4(), bankdata.username, bankdata.password];
 
     executeQuery(query, params, callback);
 };

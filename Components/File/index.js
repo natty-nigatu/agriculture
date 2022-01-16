@@ -20,7 +20,9 @@ const deleteFile = (fileid, callback) => {
     getFile(fileid, (file) => {
         if(file.length == 0) return callback(404)
         db.deleteFile(file[0], (result) => {
+            console.log("out")
             if (fileExists(file[0].name)) {
+                console.log("in")
                 fs.unlinkSync(rootDir + file[0].name);
             }
             callback(result)

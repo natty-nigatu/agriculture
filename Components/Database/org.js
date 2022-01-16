@@ -15,8 +15,8 @@ function getBank(executeQuery, bankdata, callback) {
 }
 
 const addBank = (executeQuery, bankdata, callback) => {
-    const query = "INSERT INTO bank (id, username, password) VALUES (?, ?, ?)";
-    const params = [uuidv4(), bankdata.username, bankdata.password];
+    const query = "INSERT INTO bank (id, name, username, password) VALUES (?, ?, ?, ?)";
+    const params = [uuidv4(), bankdata.name, bankdata.username, bankdata.password];
 
     executeQuery(query, params, callback);
 };

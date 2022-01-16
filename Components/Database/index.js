@@ -30,7 +30,3 @@ const getProcess = (processdata, callback) => process.getProcess(executeQuery, p
 const addProcess = (processdata, callback) => process.addProcess(executeQuery, processdata, callback);
 const setProcess = (processdata, callback) => process.setProcess(executeQuery, processdata, callback);
 const deleteProcess = (processdata, callback) => process.deleteProcess(executeQuery, processdata, callback);
-
-connection.end((error) => {
-    error && console.log(error);
-});

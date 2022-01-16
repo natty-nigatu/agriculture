@@ -13,7 +13,7 @@ const getIdName = (oldName) => {
 };
 
 const fileExists = (name) => {
-    fs.existsSync(rootDir + name)
+    return fs.existsSync(rootDir + name)
 }
 
 module.exports = { getIdName, rootDir, fileExists };

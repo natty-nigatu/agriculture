@@ -1,3 +1,5 @@
+const {v4: uuidv4} = require("uuid")
+
 function getUser(executeQuery, userdata, callback) {
     let query = "SELECT * FROM user WHERE ";
     let params;

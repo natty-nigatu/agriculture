@@ -11,21 +11,19 @@ const addFile = (file, user, bank, callback) => {
         error && console.log(error);
     });
 
-    db.addFile({ name, user, bank }, (insertId) => {
-        callback(insertId);
+    db.addFile({ name, user, bank }, (insertId, error) => {
+        callback(insertId, error);
     });
 };
 
 const deleteFile = (fileid, callback) => {
     getFile(fileid, (file) => {
-        if(file.length == 0) return callback(404)
-        db.deleteFile(file[0], (result) => {
-            console.log("out")
+        if(file.length == 0) return callback(401)
+        db.deleteFile(file[0], (result, error) => {
             if (fileExists(file[0].name)) {
-                console.log("in")
                 fs.unlinkSync(rootDir + file[0].name);
             }
-            callback(result)
+            callback(result, error)
         });
     });
 };

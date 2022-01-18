@@ -62,8 +62,8 @@ const changePassword = (type, userdata, newPassword, callback) => {
             bcrypt.compare(userdata.password, user.password).then((result) => {
                 if (!result) return callback("error");
                 bcrypt.hash(newPassword, 10).then((password) => {
-                    db.setUser({ id: user.id, password }, (result) => {
-                        callback(result);
+                    db.setUser({ id: user.id, password }, (result, error) => {
+                        callback(result, error);
                     });
                 });
             });

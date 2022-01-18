@@ -26,8 +26,8 @@ function getProcess(executeQuery, processdata, callback) {
 }
 
 const addProcess = (executeQuery, processdata, callback) => {
-    const query = "INSERT INTO process (id, user) VALUES (?, ?)";
-    const params = [uuidv4(), processdata.user];
+    const query = "INSERT INTO process (id, user, name) VALUES (?, ?, ?)";
+    const params = [uuidv4(), processdata.user, processdata.name];
 
     executeQuery(query, params, callback);
 };

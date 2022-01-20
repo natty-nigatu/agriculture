@@ -1,2 +1,4 @@
-node_modules/
-Files/
+/node_modules/
+/Files/
+/client/node_modules
+/clinet/build

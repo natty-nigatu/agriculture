@@ -20,8 +20,7 @@ const signUp = (req, res) => {
     const { username, password, type, name } = req.body;
     const userdata = { username, password, name };
     authentication.signUp(type, userdata, (result) => {
-        if (result === "taken")
-            return res.status(400).send("Username is taken");
+        if (result === "taken") return res.status(400).send("taken");
         else return res.status(200).send("Account Created Successfully");
     });
 };
@@ -34,7 +33,7 @@ const logIn = (req, res) => {
 
         const tokenPayload = { id: userId, username, type };
         const token = authorization.createToken(tokenPayload);
-        res.json({ token });
+        res.status(200).json({ token, id:userId });
     });
 };
 

@@ -69,7 +69,7 @@ function Signup() {
                     if (error.response.data === "taken")
                         return setError("Username is already taken.");
                 }
-
+                console.log(error)
                 return setError("Cannot sign up, an error occured");
             });
     }
@@ -82,7 +82,7 @@ function Signup() {
                         Account Created Successfully
                     </h3>
                     <h4 className="mt-4">Please Login to Continue</h4>
-                    <Link to="login" className="btn btn-warning w-100 mt-4   ">
+                    <Link to="/login" className="btn btn-warning w-100 mt-4   ">
                         Log In
                     </Link>
                 </Card.Body>

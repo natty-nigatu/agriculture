@@ -1,15 +1,17 @@
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 import React from "react";
 
 function Header() {
     const auth = useAuth();
+    
     const loggedIn = Object.keys(auth.get).length !== 0;
     return (
         <>
             <Navbar bg="warning" expand="md">
                 <Container>
-                    <Navbar.Brand href="/">
+                    <Navbar.Brand as={Link} to="/">
                         Import<span className="text-danger">ET</span>
                     </Navbar.Brand>
                     {loggedIn ? (
@@ -17,27 +19,19 @@ function Header() {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto w-100">
-                                    <Nav.Link href="#home">Home</Nav.Link>
-                                    <Nav.Link href="#link">Link</Nav.Link>
-                                    <NavDropdown
+                                    <Nav.Link as={Link} to="/">
+                                        Home
+                                    </Nav.Link>
+                                    <Nav.Link as={Link} to="/account">
+                                        Account
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        as={Link}
+                                        to="/logout"
                                         className="ms-auto"
-                                        title="Dropdown"
-                                        id="basic-nav-dropdown"
                                     >
-                                        <NavDropdown.Item href="#action/3.1">
-                                            Action
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.2">
-                                            Another action
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3">
-                                            Something
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action/3.4">
-                                            Separated link
-                                        </NavDropdown.Item>
-                                    </NavDropdown>
+                                        Log Out
+                                    </Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </>

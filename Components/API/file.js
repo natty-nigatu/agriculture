@@ -7,9 +7,21 @@ const getFile = (req, res) => {
     fileComp.getFile(req.body.id, (file) => {
         if (file.length == 0) return res.sendStatus(404);
 
-        if (file[0].user !== req.user.id) return res.sendStatus(403);
+        if (req.user.id !== "1" && req.user.id !== "2" && file[0].user !== req.user.id) return res.sendStatus(403);
 
         res.sendFile(rootDir + file[0].name);
+    });
+};
+
+const getDownloadFile = (req, res) => {
+    fileComp.getFile(req.body.id, (file) => {
+        if (file.length == 0) return res.sendStatus(404);
+
+        if (req.user.id !== "1" && req.user.id !== "2" && file[0].user !== req.user.id) return res.sendStatus(403);
+
+        const name = req.name + "." + file[0].name.split(".").at(-1);
+
+        res.download(rootDir + file[0].name, name);
     });
 };
 
@@ -38,4 +50,4 @@ const deleteFile = (req, res) => {
     });
 };
 
-module.exports = { getFile, createFile, deleteFile };
+module.exports = { getFile, createFile, deleteFile, getDownloadFile };

@@ -9,6 +9,7 @@ function getFile(executeQuery, filedata, callback) {
 
 const addFile = (connection, filedata, callback) => {
     var insertId = uuidv4();
+    
     const query = "INSERT INTO file (id, name, user, bank) VALUES (?, ?, ?, ?)";
     const params = [insertId, filedata.name, filedata.user, filedata.bank];
 

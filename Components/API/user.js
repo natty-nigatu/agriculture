@@ -1,11 +1,21 @@
 const db = require("../Database/index");
 
 const getUser = (req, res) => {
-    db.getUser(req.body, (result, error) => {
-        if (error !== null) return res.sendStatus(400);
+    const type = req.body.type;
+    delete req.body.type;
 
-        res.json(result);
-    });
+    if (type === "org")
+        db.getOrg(req.body, (result, error) => {
+            if (error !== null) return res.sendStatus(400);
+            for (const one of result) delete one.password;
+            res.json(result);
+        });
+    else
+        db.getUser(req.body, (result, error) => {
+            if (error !== null) return res.sendStatus(400);
+            for (const one of result) delete one.password;
+            res.json(result);
+        });
 };
 
 const createUser = (req, res) => {
@@ -16,10 +26,19 @@ const createUser = (req, res) => {
 };
 
 const updateUser = (req, res) => {
-    db.setUser(req.body, (result, error) => {
-        if (error !== null) return res.sendStatus(400);
-        res.sendStatus(200);
-    });
+    const type = req.body.type;
+    delete req.body.type;
+
+    if (type === "org")
+        db.setOrg(req.body, (result, error) => {
+            if (error !== null) return res.sendStatus(400);
+            res.sendStatus(200);
+        });
+    else
+        db.setUser(req.body, (result, error) => {
+            if (error !== null) return res.sendStatus(400);
+            res.sendStatus(200);
+        });
 };
 
 const deleteUser = (req, res) => {

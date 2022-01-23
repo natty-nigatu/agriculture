@@ -29,7 +29,7 @@ const getOrg = (orgdata, callback) => org.getOrg(executeQuery, orgdata, callback
 const setOrg = (orgdata, callback) => org.setOrg(executeQuery, orgdata, callback);
 
 const getProcess = (processdata, callback) => process.getProcess(executeQuery, processdata, callback);
-const addProcess = (processdata, callback) => process.addProcess(executeQuery, processdata, callback);
+const addProcess = (processdata, callback) => process.addProcess(connection, processdata, callback);
 const setProcess = (processdata, callback) => process.setProcess(executeQuery, processdata, callback);
 const deleteProcess = (processdata, callback) => process.deleteProcess(executeQuery, processdata, callback);
 

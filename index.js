@@ -28,6 +28,8 @@ app.post("/changepassword", authorization.authorizeToken, authentication.changeP
 app.post("/signup", authentication.signUp);//username, password, type, name
 app.post("/login", authentication.logIn);//username, password, type
 
+app.get("/download", authorization.authorizeGetToken, file.getDownloadFile)//id, token
+app.get("/file/:dummy", authorization.authorizeGetToken, file.getFile)//id, token
 app.post("/file", authorization.authorizeToken, file.getFile);//id
 app.put("/file",authorization.authorizeToken, file.createFile);//file, user, bank
 app.delete("/file", authorization.authorizeToken, file.deleteFile);

@@ -6,7 +6,7 @@ function Footer() {
             className="footern bg-light text-center p-3 fs-5"
             style={{ marginTop: "10rem", color: "gray" }}
         >
-            2020, Addis Ababa Science and Technology Universtiy
+            2020, Addis Ababa Science and Technology University
         </footer>
     );
 }

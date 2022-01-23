@@ -1,40 +1,48 @@
-const {v4: uuidv4} = require("uuid")
+const { v4: uuidv4 } = require("uuid");
 
 function getProcess(executeQuery, processdata, callback) {
-    let query = "SELECT * FROM process WHERE ";
+    let query =
+        "SELECT process.*, user.name, user.TIN as ownername FROM process LEFT JOIN user ON process.user = user.id WHERE ";
     let params;
     if (processdata.user !== undefined) {
-        query += "user = ?";
+        query += "process.user = ?";
         params = processdata.user;
     } else if (processdata.id !== undefined) {
-        query += "id = ?";
+        query += "process.id = ?";
         params = processdata.id;
     } else if (processdata.bank !== undefined) {
-        query += "bank = ?";
+        query += "process.bank = ?";
         params = [processdata.bank];
 
         if (processdata.step !== undefined) {
-            query += " AND step = ?";
+            query += " AND process.step = ?";
             params.push(processdata.step);
         }
     } else if (processdata.step !== undefined) {
-        query += "step = ?";
+        query += "process.step = ?";
         params = processdata.step;
     }
+
+    query += " ORDER BY process.name";
 
     executeQuery(query, params, callback);
 }
 
-const addProcess = (executeQuery, processdata, callback) => {
-    const query = "INSERT INTO process (id, user, name) VALUES (?, ?, ?)";
-    const params = [uuidv4(), processdata.user, processdata.name];
+const addProcess = (connection, processdata, callback) => {
+    const id = uuidv4();
 
-    executeQuery(query, params, callback);
+    const query = "INSERT INTO process (id, user, name) VALUES (?, ?, ?)";
+    const params = [id, processdata.user, processdata.name];
+
+    connection.query(query, params, function (error, result) {
+        error && console.log(error);
+        callback({ id }, error);
+    });
 };
 
 const deleteProcess = (executeQuery, processdata, callback) => {
     const query = "DELETE FROM process WHERE id = ?";
-    const params = processdata.id;
+    const params = [processdata.id];
 
     executeQuery(query, params, callback);
 };

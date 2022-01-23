@@ -12,7 +12,7 @@ const getProcess= (req, res) => {
 const createProcess = (req, res) => {
     db.addProcess(req.body, (result, error) => {
         if (error !== null) return res.sendStatus(400)
-        res.sendStatus(201)
+        res.status(201).send(result)
         
     })
 }

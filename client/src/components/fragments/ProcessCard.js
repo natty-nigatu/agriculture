@@ -7,7 +7,6 @@ import axios from "axios";
 import host from "../../host";
 import CheckMark from "./CheckMark";
 import DeleteProcess from "./DeleteProcess";
-import { Folder2Open } from "react-bootstrap-icons";
 
 function ProcessCard({ process, processDeleted }) {
     const auth = useAuth();
@@ -45,22 +44,7 @@ function ProcessCard({ process, processDeleted }) {
         <Card className="mb-3 shadow border-0 display-6 fs-3 text-black text-decoration-none ">
             <Card.Body>
                 {auth.get.id === "1" || auth.get.id === "2" ? (
-                    <div>
-                        <span className="d-inline-flex flex-column m-0">
-                            <span className="fs-4">{user.name}</span>
-                            <span className="fs-5">{process.name}</span>
-                        </span>
-
-                        <Link
-                            className="stretched-link btn btn-warning float-end my-auto"
-                            to={`/process/${process.id}`}
-                        >
-                            <Folder2Open size={20} className="me-2" />
-                            Open
-                        </Link>
-
-                        <span className="float-end mx-5 align-bottom">TIN: {user.TIN}</span>
-                    </div>
+                    user.name
                 ) : (
                     <>
                         <Link

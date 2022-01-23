@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContext";
 import host from "../host";
 const axios = require("axios");
 
-function LogIn() {
+function LogIn({ org }) {
     const auth = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
@@ -37,7 +37,7 @@ function LogIn() {
         let user = {
             username: usernameRef.current.value.trim(),
             password: passwordRef.current.value.trim(),
-            type: "user",
+            type: org ? "org" : "user",
         };
 
         for (const property in user) {
@@ -45,10 +45,19 @@ function LogIn() {
                 return setError(`Cannot log in, ${property} cannot be empty.`);
         }
 
-        if (user.username.length < 5) return setError("Username is too short.");
+        if (org) {
+            if (user.username.length < 3)
+                return setError("Username is too short.");
 
-        if (user.password.length < 8) return setError("Password is too short.");
+            if (user.password.length < 7)
+                return setError("Password is too short.");
+        } else {
+            if (user.username.length < 5)
+                return setError("Username is too short.");
 
+            if (user.password.length < 8)
+                return setError("Password is too short.");
+        }
         axios
             .post(`${host}/login`, user)
             .then((res) => {
@@ -75,7 +84,9 @@ function LogIn() {
         <Container className="mt-5 pd-5" style={{ maxWidth: "500px" }}>
             <Card className="shadow border-0">
                 <Card.Body>
-                    <h2 className="text-center mb-3 text-warning">Log In</h2>
+                    <h2 className="text-center mb-3 text-warning">
+                        Log In {org && <span className="text-danger">Org</span>}
+                    </h2>
                     <Form>
                         {error !== null && (
                             <Alert variant="danger">{error}</Alert>
@@ -110,12 +121,14 @@ function LogIn() {
                 </Card.Body>
             </Card>
 
-            <div className="w-100 text-center mt-5">
-                Don't have an account?{" "}
-                <Link to="/signup" className="btn btn-warning">
-                    Sign Up
-                </Link>
-            </div>
+            {!org && (
+                <div className="w-100 text-center mt-5">
+                    Don't have an account?{" "}
+                    <Link to="/signup" className="btn btn-warning">
+                        Sign Up
+                    </Link>
+                </div>
+            )}
         </Container>
     );
 }

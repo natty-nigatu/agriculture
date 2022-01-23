@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require("uuid");
 
 function getProcess(executeQuery, processdata, callback) {
     let query =
-        "SELECT process.*, user.name, user.TIN as ownername FROM process LEFT JOIN user ON process.user = user.id WHERE ";
+        "SELECT process.*, user.name as ownername, user.TIN FROM process LEFT JOIN user ON process.user = user.id WHERE ";
     let params;
     if (processdata.user !== undefined) {
         query += "process.user = ?";

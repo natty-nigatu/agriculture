@@ -88,9 +88,7 @@ function Account() {
             })
             .catch((error) => {
                 if (error.response.status === 400)
-                    return setErrorPass(
-                        "Current password is incorrect."
-                    );
+                    return setErrorPass("Current password is incorrect.");
                 return setErrorPass(
                     "Cannot update information, an error occured. "
                 );
@@ -124,7 +122,7 @@ function Account() {
             <Spinner animation="grow" variant="warning" />
         </div>
     ) : (
-        <Container className="px-5" style={{ maxWidth: "1100px" }}>
+        <Container className="p-5" style={{ maxWidth: "1100px" }}>
             <div className="row mt-5">
                 {auth.get.type === "user" && (
                     <div className="col">

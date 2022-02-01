@@ -81,7 +81,7 @@ function LogIn({ org }) {
     }
 
     return (
-        <Container className="mt-5 pd-5" style={{ maxWidth: "500px" }}>
+        <Container className="mt-5 pd-5" style={{ maxWidth: "500px", paddingTop: "5rem" }}>
             <Card className="shadow border-0">
                 <Card.Body>
                     <h2 className="text-center mb-3 text-warning">

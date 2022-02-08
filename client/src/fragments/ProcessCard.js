@@ -54,6 +54,31 @@ function ProcessCard({ process, processDeleted }) {
                             {process.name}
                         </Link>
 
+                        <Link
+                            className="text-decoration-none text-black"
+                            to={`/process/${process.id}`}
+                        >
+                            {process.user}
+
+                            <DeleteProcess
+                                id={process.TIN}
+                                callback={processDeleted}
+                            />
+
+                            <span className="float-end">
+                                <CheckMark color={color.first} tip="Upload" />
+                                <CheckMark
+                                    color={color.second}
+                                    tip="Get permit"
+                                />
+                                <CheckMark
+                                    color={color.third}
+                                    tip="Upload Declaration"
+                                />
+                                <CheckMark color={color.fourth} tip="Cleared" />
+                            </span>
+                        </Link>
+
                         <DeleteProcess
                             id={process.id}
                             callback={processDeleted}

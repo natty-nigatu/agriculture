@@ -7,6 +7,7 @@ import axios from "axios";
 import host from "../../host";
 import CheckMark from "./CheckMark";
 import DeleteProcess from "./DeleteProcess";
+import { Folder2Open } from "react-bootstrap-icons";
 
 function ProcessCard({ process, processDeleted }) {
     const auth = useAuth();
@@ -44,7 +45,26 @@ function ProcessCard({ process, processDeleted }) {
         <Card className="mb-3 shadow border-0 display-6 fs-3 text-black text-decoration-none ">
             <Card.Body>
                 {auth.get.id === "1" || auth.get.id === "2" ? (
-                    user.name
+                    <div>
+                        <span className="d-inline-flex flex-column m-0">
+                            <span className="fs-4">{user.name}</span>
+                            <span className="fs-5">{process.name}</span>
+                        </span>
+
+                        <Link
+
+                            className="stretched-link text-decoration-none "
+                            to={`/process2/${process.id}`}
+                        >
+                            {process.name2}
+
+
+                        </Link>
+
+                        <span className="float-end mx-5 align-bottom">
+                            TIN: {user.TIN}
+                        </span>
+                    </div>
                 ) : (
                     <>
                         <Link
@@ -52,31 +72,6 @@ function ProcessCard({ process, processDeleted }) {
                             to={`/process/${process.id}`}
                         >
                             {process.name}
-                        </Link>
-
-                        <Link
-                            className="text-decoration-none text-black"
-                            to={`/process/${process.id}`}
-                        >
-                            {process.user}
-
-                            <DeleteProcess
-                                id={process.TIN}
-                                callback={processDeleted}
-                            />
-
-                            <span className="float-end">
-                                <CheckMark color={color.first} tip="Upload" />
-                                <CheckMark
-                                    color={color.second}
-                                    tip="Get permit"
-                                />
-                                <CheckMark
-                                    color={color.third}
-                                    tip="Upload Declaration"
-                                />
-                                <CheckMark color={color.fourth} tip="Cleared" />
-                            </span>
                         </Link>
 
                         <DeleteProcess

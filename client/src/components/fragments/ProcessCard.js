@@ -48,10 +48,10 @@ function ProcessCard({ process, processDeleted }) {
                 ) : (
                     <>
                         <Link
-                            className="stretched-link text-decoration-none text-black"
-                            to={`/process/${process.id}`}
+                            className="stretched-link text-decoration-none "
+                            to={`/process2/${process.id}`}
                         >
-                            {process.name}
+                            {process.name2}
                         </Link>
 
                         <Link
@@ -85,14 +85,6 @@ function ProcessCard({ process, processDeleted }) {
                         />
 
                         <span className="float-end">
-                         <CheckMark
-                                color={color.third}
-                                tip="Upload Declaration for inspection"
-                            />
-                            <CheckMark
-                                color={color.fourth}
-                                tip="Process Cleared"
-                            />
                             <CheckMark
                                 color={color.first}
                                 tip="Upload files to get permit"
@@ -101,13 +93,15 @@ function ProcessCard({ process, processDeleted }) {
                                 color={color.second}
                                 tip="Get permit to proceed to shipping"
                             />
-
-
+                            <CheckMark
+                                color={color.third}
+                                tip="Upload Declaration for inspection"
+                            />
+                            <CheckMark
+                                color={color.fourth}
+                                tip="Process Cleared"
+                            />
                         </span>
-                        <DeleteProcess
-                            id={process.id}
-                            callback={processDeleted}
-                        />
                     </>
                 )}
             </Card.Body>

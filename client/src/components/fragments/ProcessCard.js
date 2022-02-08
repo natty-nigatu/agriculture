@@ -52,11 +52,13 @@ function ProcessCard({ process, processDeleted }) {
                         </span>
 
                         <Link
-                            className="stretched-link btn btn-warning float-end my-auto"
-                            to={`/process/${process.id}`}
+
+                            className="stretched-link text-decoration-none "
+                            to={`/process2/${process.id}`}
                         >
-                            <Folder2Open size={20} className="me-2" />
-                            Open
+                            {process.name2}
+
+
                         </Link>
 
                         <span className="float-end mx-5 align-bottom">

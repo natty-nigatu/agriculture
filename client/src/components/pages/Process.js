@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { Spinner } from "react-bootstrap";
 import axios from "axios";
@@ -12,17 +12,13 @@ import UserFourth from "../fragments/UserFourth";
 import UserFifth from "../fragments/UserFifth";
 import NBEProcess from "../fragments/NBEProcess";
 import CCProcess from "../fragments/CCProcess";
-import ProcessSidebar from "../fragments/ProcessSidebar";
-import OrgSidebar from "../fragments/OrgSidebar";
 
-function Process(props) {
+function Process(a) {
     const auth = useAuth();
     const [currProcess, setCurProcess] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const params = useParams();
-    const location = useLocation()
-    
 
     useEffect(() => {
         let loggedInUser;
@@ -70,8 +66,6 @@ function Process(props) {
                 return <UserFourth id={params.id} />;
             case 5:
                 return <UserFifth id={params.id} />;
-            default:
-                return null;
         }
     }
 
@@ -88,6 +82,7 @@ function Process(props) {
 
             default:
                 return selectUser(step);
+                break;
         }
     }
 
@@ -96,22 +91,7 @@ function Process(props) {
             <Spinner animation="grow" variant="warning" />
         </div>
     ) : (
-        <div className="row">
-            <div className="col-3">
-                {auth.get.type === "user" ? (
-                    <ProcessSidebar
-                        step={currProcess.step}
-                        status={currProcess.status}
-                        name={currProcess.name}
-                    />
-                ) : (
-                    <OrgSidebar />
-                )}
-            </div>
-            <div className="col-9 mt-2">
-                {selectComponent(auth.get.id, currProcess.step)}
-            </div>
-        </div>
+        <div>{selectComponent(auth.get.id, currProcess.step)}</div>
     );
 }
 

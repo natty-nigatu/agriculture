@@ -5,11 +5,11 @@ import React from "react";
 
 function Header() {
     const auth = useAuth();
-
+    
     const loggedIn = Object.keys(auth.get).length !== 0;
     return (
         <>
-            <Navbar bg="warning" expand="md" className="fixed-top">
+            <Navbar bg="warning" expand="md">
                 <Container>
                     <Navbar.Brand as={Link} to="/">
                         Import<span className="text-danger">ET</span>
@@ -25,24 +25,13 @@ function Header() {
                                     <Nav.Link as={Link} to="/account">
                                         Account
                                     </Nav.Link>
-
-                                    <NavDropdown
-                                        title={auth.get.username}
+                                    <Nav.Link
+                                        as={Link}
+                                        to="/logout"
                                         className="ms-auto"
                                     >
-                                        <NavDropdown.Item
-                                            as={Link}
-                                            to="/account"
-                                        >
-                                            Account
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Item
-                                            as={Link}
-                                            to="/logout"
-                                        >
-                                            Log Out
-                                        </NavDropdown.Item>
-                                    </NavDropdown>
+                                        Log Out
+                                    </Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </>

@@ -75,7 +75,7 @@ function Signup() {
     }
 
     return userCreated ? (
-        <Container className="mt-5 pd-5" style={{ maxWidth: "500px", paddingTop: "5rem"}}>
+        <Container className="mt-5 pd-5" style={{ maxWidth: "500px" }}>
             <Card className="shadow border-0">
                 <Card.Body className="my-4 text-center">
                     <h3 className="text-warning">
@@ -89,7 +89,7 @@ function Signup() {
             </Card>
         </Container>
     ) : (
-        <Container className="mt-5 pd-5" style={{ maxWidth: "500px", paddingTop: "5rem" }}>
+        <Container className="mt-5 pd-5" style={{ maxWidth: "500px" }}>
             <Card className="shadow border-0">
                 <Card.Body>
                     <h2 className="text-center mb-3 text-warning">Sign Up</h2>

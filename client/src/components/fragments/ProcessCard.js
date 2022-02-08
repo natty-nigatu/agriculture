@@ -7,7 +7,6 @@ import axios from "axios";
 import host from "../../host";
 import CheckMark from "./CheckMark";
 import DeleteProcess from "./DeleteProcess";
-import { Folder2Open } from "react-bootstrap-icons";
 
 function ProcessCard({ process, processDeleted }) {
     const auth = useAuth();

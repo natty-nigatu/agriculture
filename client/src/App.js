@@ -18,18 +18,16 @@ function App() {
         <ContextProviders>
             <Router>
                 <Header />
-                <div className="mt-5">
-                    <Routes>
-                        <Route path="/" element={<UserHome />} />
-                        <Route path="/org" element={<LogIn org={true} />} />
-                        <Route path="/login" element={<LogIn />} />
-                        <Route path="/logout" element={<Logout />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="/account" element={<Account />} />
-                        <Route path="/process/new" element={<NewProcess />} />
-                        <Route path="/process/:id" element={<Process />} />
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route path="/" element={<UserHome />} />
+                    <Route path="/org" element={<LogIn org={true} />} />
+                    <Route path="/login" element={<LogIn />} />
+                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/process/new" element={<NewProcess />} />
+                    <Route path="/process/:id" element={<Process />} />
+                </Routes>
                 <Footer />
             </Router>
         </ContextProviders>

@@ -5,6 +5,9 @@ Group names
 4.	Natnael Kibru ETS 0834/11
 5.	Nebiyu Getachew ETS 0849/11
 
+Natty Nigatu <nattynigatu214.arg@gmail.com> and macknatty <75257015+macknatty@users.noreply.github.com> added git ignore
+
+we added stash...
 
 
 
